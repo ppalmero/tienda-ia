@@ -1,0 +1,30 @@
+<div style="text-align:center; margin-top: 50px;">
+  <h1>{{ title }}</h1>
+
+  <button (click)="cargarProductos()" [disabled]="cargando">
+    <span *ngIf="!cargando">Cargar Productos a Firebase</span>
+    <span *ngIf="cargando">Cargando...</span>
+  </button>
+
+  <p *ngIf="mensaje" style="color: green;">{{ mensaje }}</p>
+  <p *ngIf="error" style="color: red;">{{ error }}</p>
+
+  <hr>
+
+  <h2>Productos en Firebase:</h2>
+  <div *ngIf="productosCargados.length === 0">
+    <p>No hay productos cargados en Firebase aún.</p>
+  </div>
+  <ul *ngIf="productosCargados.length > 0">
+    <li *ngFor="let producto of productosCargados">
+      <strong>ID:</strong> {{ producto.id }}<br>
+      <strong>Nombre:</strong> {{ producto.nombre }}<br>
+      <strong>Precio:</strong> ${{ producto.precio }}<br>
+      <strong>Descripción:</strong> {{ producto.descripcion }}<br>
+      <strong>Link:</strong> {{ producto.link }}<br>
+      <strong>Marca:</strong> {{ producto.marca }}<br>
+      <strong>Categoría:</strong> {{ producto.categoria }}
+      <hr>
+    </li>
+  </ul>
+</div>
