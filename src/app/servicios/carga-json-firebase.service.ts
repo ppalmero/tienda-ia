@@ -36,7 +36,7 @@ export class CargaJsonFirebaseService {
    * Lee el archivo JSON de productos desde la carpeta assets.
    */
   getProductosFromJson(): Observable<Producto[]> {
-    return this.http.get<Producto[]>('assets/productos.jsonl');
+    return this.http.get<Producto[]>('assets/clientes.json');
   }
 
   /**

@@ -1,0 +1,61 @@
+[{
+  "idCliente": 1,
+  "dniCliente": 30465745,
+  "nombreCliente": "Evangelia",
+  "apellidoCliente": "Laird-Craig",
+  "telefonoCliente": "323-80-6451"
+}, {
+  "idCliente": 2,
+  "dniCliente": 54003452,
+  "nombreCliente": "Nikaniki",
+  "apellidoCliente": "Bathow",
+  "telefonoCliente": "734-50-4168"
+}, {
+  "idCliente": 3,
+  "dniCliente": 17262646,
+  "nombreCliente": "Marena",
+  "apellidoCliente": "Kieff",
+  "telefonoCliente": "243-15-1988"
+}, {
+  "idCliente": 4,
+  "dniCliente": 37763205,
+  "nombreCliente": "Lauree",
+  "apellidoCliente": "Jenckes",
+  "telefonoCliente": "388-32-4213"
+}, {
+  "idCliente": 5,
+  "dniCliente": 99601796,
+  "nombreCliente": "Rosaleen",
+  "apellidoCliente": "Plewes",
+  "telefonoCliente": "600-10-7144"
+}, {
+  "idCliente": 6,
+  "dniCliente": 4363223,
+  "nombreCliente": "Kip",
+  "apellidoCliente": "Bortolozzi",
+  "telefonoCliente": "308-29-0030"
+}, {
+  "idCliente": 7,
+  "dniCliente": 2702287,
+  "nombreCliente": "Davina",
+  "apellidoCliente": "McIlvenny",
+  "telefonoCliente": "243-55-0707"
+}, {
+  "idCliente": 8,
+  "dniCliente": 15397141,
+  "nombreCliente": "Garrot",
+  "apellidoCliente": "Scuse",
+  "telefonoCliente": "334-81-5634"
+}, {
+  "idCliente": 9,
+  "dniCliente": 48339930,
+  "nombreCliente": "Worth",
+  "apellidoCliente": "Comber",
+  "telefonoCliente": "560-38-8540"
+}, {
+  "idCliente": 10,
+  "dniCliente": 46191327,
+  "nombreCliente": "Shirlene",
+  "apellidoCliente": "Sarton",
+  "telefonoCliente": "189-55-2699"
+}]

@@ -2,10 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CargaJsonFirebaseService } from './servicios/carga-json-firebase.service';
 import { NgIf, NgFor } from '@angular/common';
+import { forkJoin, Observable, switchMap } from 'rxjs';
+import { Producto } from './modelo/producto';
+import { HttpClient } from '@angular/common/http';
+import { initializeApp } from 'firebase/app';
+import { environment } from './environments/environment';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
 
 @Component({
   selector: 'app-root',
-  imports: [NgIf, NgFor, ],
+  imports: [NgIf, NgFor,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -16,13 +22,48 @@ export class AppComponent implements OnInit {
   mensaje = '';
   error = '';
 
-  constructor(private productoService: CargaJsonFirebaseService) { }
+  basededatos: any;
+
+  constructor(private http: HttpClient, private productoService: CargaJsonFirebaseService) {
+    /*const app = initializeApp(environment.firebase);
+    this.basededatos = getFirestore(app);
+    this.cargarProductosDesdeJsonAFirebase();*/
+    //console.log("algo");
+  }
 
   ngOnInit(): void {
     // Puedes llamar a la función de carga automáticamente al iniciar el componente
     // o a través de un botón en el HTML.
     // this.cargarProductos();
-    this.obtenerProductosDeFirebase(); // Para mostrar los productos ya cargados
+    //this.obtenerProductosDeFirebase(); // Para mostrar los productos ya cargados
+  }
+
+  getProductosFromJson(): Observable<Producto[]> {
+    return this.http.get<Producto[]>('assets/productos.jsonl');
+  }
+
+  cargarProductosDesdeJsonAFirebase(): Observable<any[]> {
+    return this.getProductosFromJson().pipe(
+      switchMap(productos => {
+        const operacionesGuardado: Promise<any>[] = [];
+        productos.forEach(producto => {
+          operacionesGuardado.push(this.guardarProductoEnFirebase(producto));
+        });
+        return forkJoin(operacionesGuardado); // Espera a que todas las promesas se resuelvan
+      })
+    );
+  }
+
+  async guardarProductoEnFirebase(producto: Producto): Promise<any> {
+    // Si el producto ya tiene un 'id', lo usamos para actualizar, sino, Firebase generará uno nuevo.
+    if (producto.id) {
+      return this.basededatos.collection('productosIA').doc(producto.id).set(producto);
+    } else {
+      // Usar add() para que Firebase genere un ID automáticamente.
+      // Puedes obtener el ID del documento una vez que la promesa se resuelva si lo necesitas.
+      //return this.basededatos.collection('productosIA').add(producto);
+      const docRef = await addDoc(collection(this.basededatos, "productosIA"), producto);//JSON.parse(JSON.stringify(this.comunicacion.usuario)));
+    }
   }
 
   cargarProductos(): void {
@@ -30,7 +71,7 @@ export class AppComponent implements OnInit {
     this.mensaje = 'Cargando productos desde JSON a Firebase...';
     this.error = '';
 
-    this.productoService.cargarProductosDesdeJsonAFirebase().subscribe({
+    this.cargarProductosDesdeJsonAFirebase().subscribe({
       next: (resultados) => {
         console.log('Productos cargados exitosamente:', resultados);
         this.mensaje = `Se han cargado ${resultados.length} productos a Firebase.`;
