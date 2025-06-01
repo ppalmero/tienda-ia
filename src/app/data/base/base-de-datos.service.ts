@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-//import { VentaVoz } from '../modelo/venta-voz';
+import { VentaVoz } from '../../modelo/venta-voz';
 import { collection, deleteDoc, setDoc, doc, getDocs, getFirestore, QuerySnapshot, query, where } from 'firebase/firestore/lite';
 import { initializeApp } from "firebase/app";
 import { environment } from '../../environments/environment';
@@ -32,10 +32,13 @@ export class BaseDeDatosService {
   private datosBDProductosSubject$ = new Subject<QuerySnapshot>();
   datosBDProductos$ = this.datosBDProductosSubject$.asObservable();
 
+  private datosBDProductosIASubject$ = new Subject<QuerySnapshot>();
+  datosBDProductosIA$ = this.datosBDProductosIASubject$.asObservable();
+
   private datosBDPromocionesSubject$ = new Subject<QuerySnapshot>();
   datosBDPromociones$ = this.datosBDPromocionesSubject$.asObservable();
 
-  //ventaVoz: VentaVoz = { productoVentaVoz: "", precioVentaVoz: 0, cantidadVentaVoz: 0, textoVentaVoz: "" };
+  ventaVoz: VentaVoz = { productoVentaVoz: "", precioVentaVoz: 0, cantidadVentaVoz: 0, textoVentaVoz: "" };
 
   basededatos: any;
 
@@ -56,7 +59,7 @@ export class BaseDeDatosService {
     }
   }
 
-  /*async guardarVentaVoz(voz: VentaVoz) {
+  async guardarVentaVoz(voz: VentaVoz) {
     try {
       voz.fechaVentaVoz = new Date().getTime();
       const docRef = await setDoc(doc(this.basededatos, 'ventaVoz', 'ventaVoz' + voz.productoVentaVoz), voz); // Nombre de la colección
@@ -80,11 +83,11 @@ export class BaseDeDatosService {
           population: increment(50)
       });
       */
-    /*} catch (error) {
+    } catch (error) {
       console.error("Error al enviar el documento: ", error);
 
     }
-  }*/
+  }
 
   async guardarProducto(producto: Producto){
     try {
@@ -103,6 +106,7 @@ export class BaseDeDatosService {
       case Colecciones.CATEGORIAS: this.datosBDCategoriaSubject$.next(this.datosBD); break;
       case Colecciones.PRODUCTOS: this.datosBDProductosSubject$.next(this.datosBD); break;
       case Colecciones.PROMOCIONES: this.datosBDPromocionesSubject$.next(this.datosBD); break;
+      case Colecciones.PRODUCTOSIA: this.datosBDProductosIASubject$.next(this.datosBD); break;
       default: this.datosBDSubject$.next(this.datosBD);
     }
   }
