@@ -6,10 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { BaseDeDatosService } from './data/base/base-de-datos.service';
 import { Subscription } from 'rxjs';
 import { Producto } from './modelo/producto';
+import { LandingPageComponent } from "./html/landing-page/landing-page.component";
 
 @Component({
   selector: 'app-root',
-  imports: [NgIf, NgFor,],
+  imports: [NgIf, NgFor, LandingPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
