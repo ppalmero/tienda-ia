@@ -64,7 +64,7 @@ app.use((req, res, next) => {
 
 const require = createRequire(import.meta.url);
 
-const serviceAccount = require('./angular-4e797-firebase-adminsdk-apwjh-d075d5f45b.json');
+const serviceAccount = require('./angular-4e797-firebase-adminsdk-apwjh-11804e4509.json');
 
 // 3. Inicializar la aplicación Firebase Admin
 admin.initializeApp({

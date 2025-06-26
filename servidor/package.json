@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@genkit-ai/googleai": "^1.11.0",
+    "firebase-admin": "^13.4.0",
     "genkit": "^1.11.0"
   }
 }
