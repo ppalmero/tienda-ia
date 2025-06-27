@@ -28,9 +28,16 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/js/bootstrap.bundle.min.js",
+              "src/js/jquery-1.11.0.min.js",
+              "src/js/modernizr.js",
+              "src/js/plugins.js",
+              "src/js/script.js"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {

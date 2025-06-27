@@ -7,10 +7,13 @@ import { BaseDeDatosService } from './data/base/base-de-datos.service';
 import { Subscription } from 'rxjs';
 import { Producto } from './modelo/producto';
 import { LandingPageComponent } from "./html/landing-page/landing-page.component";
+import { SliderComponent } from "./html/slider/slider.component";
+import { ServiciosComponent } from "./html/servicios/servicios.component";
+import { ProductosComponent } from "./html/productos/productos.component";
 
 @Component({
   selector: 'app-root',
-  imports: [NgIf, NgFor, LandingPageComponent],
+  imports: [NgIf, NgFor, LandingPageComponent, SliderComponent, ServiciosComponent, ProductosComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
